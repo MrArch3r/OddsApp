@@ -61,11 +61,11 @@ export default function Home({}) {
             width: "100%",
             height: "100%",
             borderWidth: 2,
-            borderColor: "grey",
+            borderColor: "#404040",
             borderRadius: RFPercentage(2),
             fontSize: RFPercentage(3),
             paddingLeft: RFPercentage(1.5),
-            color: "grey",
+            color: "#404040",
           }}
           value={percentage}
           onChangeText={handleInputChange}
@@ -76,7 +76,7 @@ export default function Home({}) {
             right: RFPercentage(1.5),
             top: RFPercentage(4.5),
             fontSize: RFPercentage(3),
-            color: "grey"
+            color: "#404040"
           }}
         >
           %

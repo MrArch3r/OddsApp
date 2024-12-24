@@ -1,8 +1,10 @@
 import { useLocalSearchParams } from "expo-router";
-import { View, Text } from "react-native";
+import React from "react";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { useRouter } from "expo-router";
 
-const oddsMessages = {
+const oddsMessages: Record<number, string> = {
   1: "randomly hitting the inner bullseye on a dart board",
   2: "randomly selecting someone with green eyes",
   3: "hitting a specific number in roulette",
@@ -25,6 +27,8 @@ const oddsMessages = {
 
 export default function ResultsPage() {
   const { percentage } = useLocalSearchParams();
+  const router = useRouter();
+
   const p: number = parseFloat(Number(percentage).toFixed(2));
   const odds: number = parseFloat((100 / p).toFixed(2));
   let isInt: boolean = false;
@@ -54,32 +58,68 @@ export default function ResultsPage() {
     denominator = denom;
   }
 
+  const handleBack = () => {
+    router.push("/pages/home");
+  }
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}  
-    >
-      <Text
+    <>
+      <View
         style={{
-          fontSize:  RFPercentage(4),
-          textAlign: "center",
-        }}
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}  
       >
-        Your odds are 1 in {odds}
-      </Text>
-      {!isInt && (
         <Text
           style={{
             fontSize:  RFPercentage(4),
             textAlign: "center",
-          }}  
+          }}
         >
-          or {numerator} in {denominator}
+          Your odds are 1 in {odds}
         </Text>
-      )}
-    </View>
+        {!isInt && (
+          <Text
+            style={{
+              width: "80%",
+              fontSize:  RFPercentage(4),
+              textAlign: "center",
+            }}  
+          >
+            or {numerator} in {denominator}
+          </Text>
+        )}
+
+        {Math.round(p) in oddsMessages && (
+          <Text
+            style={{
+              marginTop: RFPercentage(5),
+              width: "80%",
+              fontSize:  RFPercentage(3),
+              textAlign: "center",
+            }}  
+          >
+            This is about as often as {oddsMessages[Math.round(p)]}
+          </Text>
+        )}
+      </View>
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          marginLeft: RFPercentage(2),
+          marginTop: RFPercentage(2),
+        }}
+        onPress={handleBack}
+      >
+        <Image 
+          source={require("../images/arrow-back.svg")}
+          style={{
+            width: RFPercentage(7),
+            height: RFPercentage(7),
+          }}
+        />
+      </TouchableOpacity>
+    </>
   )
 }
