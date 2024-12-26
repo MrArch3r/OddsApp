@@ -37,16 +37,26 @@ export default function Home({}) {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#f8f8f8"
       }}
     >
       <Text
         style={{
           width: "75%",
-          fontSize:  RFPercentage(6),
+          fontSize:  RFPercentage(5),
           textAlign: "center",
         }}
       >
-        Enter Your Probability
+        Enter
+      </Text>
+      <Text
+        style={{
+          width: "90%",
+          fontSize:  RFPercentage(5),
+          textAlign: "center",
+        }}
+      >
+        Your Probability
       </Text>
       <View
         style={{
@@ -61,11 +71,12 @@ export default function Home({}) {
             width: "100%",
             height: "100%",
             borderWidth: 2,
-            borderColor: "#404040",
+            borderColor: "#dddddd",
             borderRadius: RFPercentage(2),
             fontSize: RFPercentage(3),
             paddingLeft: RFPercentage(1.5),
             color: "#404040",
+            backgroundColor: "white",
           }}
           value={percentage}
           onChangeText={handleInputChange}
@@ -93,7 +104,7 @@ export default function Home({}) {
           style={{
             display: "flex",
             justifyContent: "center",
-            backgroundColor: "#add8e6",
+            backgroundColor: "#4b64db",
             borderRadius: RFPercentage(2),
             width: "100%",
             height: "100%",
@@ -103,8 +114,8 @@ export default function Home({}) {
           <Text 
             style={{ 
               fontSize: RFPercentage(2.5),
-              color: 'white', 
-              fontWeight: '600',
+              color: "white", 
+              fontWeight: "600",
               textAlign: "center",
             }}
           >
